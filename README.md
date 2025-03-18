@@ -10,6 +10,8 @@ This course is a 3 hour course instructed by Alice Yue, hosted by Physalia.
 
 **Target audience**: This course is created for anyone interested in analyzing biological samples with single-cell flow cytometry. Background in flow cytometry and R/Bioconductor is necessary.
 
+**Format**: Follow along with the numbered scripts in this repository to go through a full analysis of a single (and optionally multiple) flow cytometry sample.
+
 ## Learning outcomes
 
 - Be able to set up the infrastructure for and write basic data analytic scripts in R.
