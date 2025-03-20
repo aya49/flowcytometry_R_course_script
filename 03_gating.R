@@ -61,7 +61,7 @@ gc()
 ## input: 2D matrix and angle
 ## output: rotated 2D matrix
 rotate_data <- function(data, theta=pi/2 - atan(lm(data.new[,1] ~ data.new[,2])$coefficients[2])) {
-    data %*% matrix(c(cos(theta),-sin(theta),sin(theta),cos(theta)),2,2,byrow=T)
+    data %*% matrix(c( cos(theta),-sin(theta),sin(theta),cos(theta) ),2,2,byrow=T)
 }
 
 # initialize gating set (containing 1 file)

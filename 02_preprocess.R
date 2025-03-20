@@ -93,6 +93,7 @@ pQC <- PeacoQC::PeacoQC(fmr[["flowframe"]], channels=channels,
 fc <- pQC[["FinalFF"]] 
 flowDensity::plotDens(fc, channels=c("Time", channel), ylim=channel_range, xlim=time_range)
 
+flowCore::write.fcs(fc, filename="")
 
 # clean memory by removing variables
 rm("fmr") # remove variable

@@ -134,4 +134,32 @@ gpuc
 # ggplot2::ggsave(filename=paste0(res_dir, "/2D_tsne_phenograph.png"), plot=gpup)
 
 
-## we can also plot the clusters in 2D to compare it to the gating strategy
+## EXTRA: cluster evaluation ####
+install.packages("TreeDist") # isntall package
+install.packages("cluster")
+install.packages("clValid")
+
+data(iris) # load example data, a matrix with 4 columns + a 5th column indicating the true class
+mydata <- as.matrix(iris[,1:4])
+d <- dist(mydata)
+mycol  <- as.factor(iris[,5])
+
+# kmeans++ CLUSTERING automatically initializes clusters
+klusters <- TreeDist::KMeansPP(mydata, k=5) # k = number of clusters
+plot(mydata, col=klusters$cluster, main="k=5", pch=19, cex=0.5)
+plot(mydata, col=mycol, main="truth", pch=19, cex=0.5)
+
+# silhouette index; best plot looks like a triangle per cluster, not connected.
+# finds dense round clusters based on cluster size
+# minimize distance between events of the same cluster, normalized for cluster size.
+si <- cluster::silhouette(x=klusters$cluster, dist=d)
+plot(si, col = c("red", "green", "blue", "purple", "yellow"))
+
+# dunn index; best if the value is small, bad if 1.
+# finds dense round clusters based on cluster size
+# minimize distance between events of the same cluster, normalized for cluster size.
+clValid::dunn(d, klusters$cluster)
+
+# other cluster evaluation statistics: 
+# DB index, CS  index, Xie-Beni index, Dube's separation index, 
+# Coulder and Odell's separation index, Scale-free weighted ratio, AIC/BIC
